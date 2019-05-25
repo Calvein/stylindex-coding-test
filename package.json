@@ -4,13 +4,16 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "0.1.0-beta.2",
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.11",
     "@reach/router": "^1.2.1",
     "apollo-boost": "^0.4.0",
     "graphql": "^14.3.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-spring": "^8.0.20"
   },
   "devDependencies": {
     "husky": "^2.3.0",
