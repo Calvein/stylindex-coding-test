@@ -3,15 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/react-hooks": "0.1.0-beta.2",
+    "@reach/router": "^1.2.1",
+    "apollo-boost": "^0.4.0",
+    "graphql": "^14.3.0",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
+  },
+  "devDependencies": {
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
+    "prettier": "^1.17.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "npx prettier --single-quote --trailing-comma all --no-semi --arrow-parens always --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --single-quote --trailing-comma all --no-semi --arrow-parens always --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

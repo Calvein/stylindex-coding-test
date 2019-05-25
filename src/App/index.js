@@ -1,9 +1,15 @@
-import React from 'react';
+import React from 'react'
+import { Router } from '@reach/router'
+
+import PokemonList from '../PokemonList'
+import Pokemon from '../Pokemon'
 
 const App = () => (
-  <div>
-    App
-  </div>
-);
+  <Router>
+    <PokemonList path="/">
+      <Pokemon path=":name" />
+    </PokemonList>
+  </Router>
+)
 
-export default App;
+export default App
