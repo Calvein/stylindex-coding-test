@@ -79,6 +79,7 @@ export const TYPES = {
 
 const Wrapper = styled.span`
   padding: 2px 6px;
+  margin: 0 2px;
   border: 1px solid ${({ dark }) => dark};
   border-radius: 3px;
   background: ${({ light }) => light};
