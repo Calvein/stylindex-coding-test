@@ -25,7 +25,7 @@ const GET_POKEMONS = gql`
 const Wrapper = styled.div()
 
 const Title = styled.h1`
-  padding: 16px;
+  padding: 32px 0 48px;
   text-align: center;
 `
 
@@ -85,7 +85,7 @@ const PokemonList = ({ match }) => {
   const pokemonNames = data.pokemons.map(({ name }) => name)
   return (
     <Wrapper>
-      <Title>Pokemons</Title>
+      <Title>Pokemon List</Title>
       <List>
         {data.pokemons.map((pokemon) => {
           const type1 = TYPES[pokemon.types[0]]
