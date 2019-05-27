@@ -5,7 +5,7 @@ import { Global, css } from '@emotion/core'
 import PokemonList from '../PokemonList'
 
 const App = () => (
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     <Global
       styles={css`
         html {
