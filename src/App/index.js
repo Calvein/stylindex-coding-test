@@ -1,14 +1,38 @@
 import React from 'react'
-import { Router } from '@reach/router'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Global, css } from '@emotion/core'
 
 import PokemonList from '../PokemonList'
-import Pokemon from '../Pokemon'
 
 const App = () => (
   <Router>
-    <PokemonList path="/">
-      <Pokemon path=":name" />
-    </PokemonList>
+    <Global
+      styles={css`
+        html {
+          box-sizing: border-box;
+        }
+
+        *,
+        ::before,
+        ::after {
+          padding: 0;
+          margin: 0;
+          box-sizing: inherit;
+        }
+
+        html,
+        body,
+        #root {
+          height: 100%;
+        }
+
+        body {
+          font-family: sans-serif;
+          color: #222;
+        }
+      `}
+    />
+    <Route path="/" component={PokemonList} />
   </Router>
 )
 

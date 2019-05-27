@@ -1,8 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
-import { Link } from '@reach/router'
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import styled from '@emotion/styled'
+
+import Loader from '../Loader'
+import Pokemon from '../Pokemon'
 
 const GET_POKEMONS = gql`
   query getPokemons($first: Int!) {
@@ -20,7 +25,7 @@ const List = styled.div`
   flex-direction: column;
 `
 
-const Pokemon = styled(Link)`
+const Item = styled(Link)`
   display: flex;
   align-items: center;
   &:nth-of-type(even) {
@@ -33,24 +38,32 @@ const Img = styled.img`
   margin-right: 8px;
 `
 
-const PokemonList = ({ children }) => {
-  const { data, loading, refetching, error } = useQuery(GET_POKEMONS, {
+const PokemonList = ({ match }) => {
+  const { data, loading, refetching } = useQuery(GET_POKEMONS, {
     variables: { first: 151 },
   })
 
-  if (loading && !refetching) return <h2>Loading...</h2>
-  if (error) return <h2>Error: {error}</h2>
+  if (loading && !refetching) return <Loader />
 
+  const pokemonNames = data.pokemons.map(({ name }) => name)
   return (
     <List>
-      {children}
+      <Route
+        path="/:name"
+        render={(routeProps) => (
+          <Pokemon {...routeProps} pokemonNames={pokemonNames} />
+        )}
+      />
       {data.pokemons.map((pokemon) => (
-        <Pokemon key={pokemon.id} to={pokemon.name}>
+        <Item key={pokemon.id} to={pokemon.name}>
           <Img src={pokemon.image} />#{pokemon.number} {pokemon.name}
-        </Pokemon>
+        </Item>
       ))}
     </List>
   )
 }
 
+PokemonList.propTypes = {
+  match: PropTypes.object,
+}
 export default PokemonList
