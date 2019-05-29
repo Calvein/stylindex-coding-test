@@ -41,9 +41,14 @@ const Content = styled.div`
   overflow: auto;
 `
 
+const Id = styled.div`
+  font-size: 10px;
+`
+
 const Images = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 16px;
 `
 const Image = styled.img`
   height: 250px;
@@ -61,12 +66,10 @@ const EvolutionImage = styled.img`
   height: 125px;
 `
 
-const Xxxx = styled.div`
+const Stats = styled.div`
   display: flex;
   justify-content: space-between;
 `
-
-const Size = styled.div()
 
 const Types = styled.div`
   margin: 16px 0;
@@ -130,6 +133,7 @@ const PokemonContent = ({ isLoading, pokemon, prevPokemon, nextPokemon }) => {
         )}
       </Header>
       <Content>
+        <Id>{pokemon.id}</Id>
         <Images>
           <Image src={pokemon.image} alt={pokemon.name} />
           {pokemon.evolutions &&
@@ -143,12 +147,22 @@ const PokemonContent = ({ isLoading, pokemon, prevPokemon, nextPokemon }) => {
             ))}
         </Images>
 
-        <Size>
-          <div>Weight: {formatSize(pokemon.weight)}kg</div>
-          <div>Height: {formatSize(pokemon.height)}m</div>
-        </Size>
+        <div>
+          <div>
+            Weight: <strong>{formatSize(pokemon.weight)}kg</strong>
+          </div>
+          <div>
+            Height: <strong>{formatSize(pokemon.height)}m</strong>
+          </div>
+          <div>
+            Max CP: <strong>{pokemon.maxCP}</strong>
+          </div>
+          <div>
+            Max HP: <strong>{pokemon.maxHP}</strong>
+          </div>
+        </div>
 
-        <Xxxx>
+        <Stats>
           <div>
             <Types>
               Types:
@@ -194,7 +208,7 @@ const PokemonContent = ({ isLoading, pokemon, prevPokemon, nextPokemon }) => {
               )}
             </tbody>
           </Attacks>
-        </Xxxx>
+        </Stats>
       </Content>
     </Wrapper>
   )

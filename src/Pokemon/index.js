@@ -16,6 +16,8 @@ const GET_POKEMON = gql`
       number
       name
       classification
+      maxCP
+      maxHP
       image
       evolutions {
         id

@@ -8,7 +8,7 @@ import styled from '@emotion/styled'
 
 import Loader from '../Loader'
 import Pokemon from '../Pokemon'
-import { TYPES } from '../Type'
+import Type, { TYPES } from '../Type'
 
 const GET_POKEMONS = gql`
   query getPokemons($first: Int!) {
@@ -16,6 +16,8 @@ const GET_POKEMONS = gql`
       id
       number
       name
+      maxCP
+      maxHP
       image
       types
     }
@@ -37,31 +39,21 @@ const List = styled.div`
   margin: 0 auto;
 `
 
-const Item = styled(Link)`
+const Item = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 8px;
   border: 3px solid;
-  border-color: ${({ type1, type2 }) =>
-    `${type1.light} ${type2.light} ${type2.light} ${type1.light}`};
+  border-color: ${({ color1, color2 }) =>
+    `${color1} ${color2} ${color2} ${color1}`};
   border-radius: 3px;
   text-decoration: none;
-  color: ${({ type1 }) => type1.light};
-  transition: 200ms;
-  &:hover,
-  &:focus {
-    background: ${({ type1, type2 }) =>
-      `linear-gradient(to bottom right, ${type1.light}, ${type2.light} 300%)`};
-    color: white;
-  }
-  &:active {
-    border-color: ${({ type1, type2 }) =>
-      `${type1.dark} ${type2.dark} ${type2.dark} ${type1.dark}`};
-    background: ${({ type1, type2 }) =>
-      `linear-gradient(to bottom right, ${type1.dark}, ${type2.dark} 300%)`};
-    color: white;
-  }
+`
+
+const Id = styled.div`
+  align-self: baseline;
+  font-size: 10px;
 `
 
 const Image = styled.img`
@@ -73,6 +65,33 @@ const Name = styled.div`
   margin-top: 8px;
   font-size: 18px;
   font-weight: bold;
+  color: ${({ color }) => color};
+`
+
+const Stats = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 8px 0;
+`
+
+const Types = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 8px 0;
+`
+
+const MoreInfoLink = styled(Link)`
+  align-self: flex-end;
+  font-size: 14px;
+  color: ${({ color1 }) => color1};
+  transition: 200ms;
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${({ color2 }) => color2};
+  }
 `
 
 const PokemonList = ({ match }) => {
@@ -94,16 +113,32 @@ const PokemonList = ({ match }) => {
             : type1
 
           return (
-            <Item
-              key={pokemon.name}
-              to={pokemon.name}
-              type1={type1}
-              type2={type2}
-            >
+            <Item key={pokemon.name} color1={type1.light} color2={type2.light}>
+              <Id>{pokemon.id}</Id>
               <Image src={pokemon.image} />
-              <Name>
+              <Name color={type1.light}>
                 #{pokemon.number} {pokemon.name}
               </Name>
+              <Stats>
+                <span>
+                  Max CP: <strong>{pokemon.maxCP}</strong>
+                </span>
+                <span>
+                  Max HP: <strong>{pokemon.maxHP}</strong>
+                </span>
+              </Stats>
+              <Types>
+                {pokemon.types.map((type) => (
+                  <Type key={type} of={type} />
+                ))}
+              </Types>
+              <MoreInfoLink
+                to={pokemon.name}
+                color1={type1.light}
+                color2={type1.dark}
+              >
+                More information
+              </MoreInfoLink>
             </Item>
           )
         })}
