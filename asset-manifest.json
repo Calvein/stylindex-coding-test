@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/stylindex-coding-test/static/js/main.e6a6d3f8.chunk.js",
-    "main.js.map": "/stylindex-coding-test/static/js/main.e6a6d3f8.chunk.js.map",
+    "main.js": "/stylindex-coding-test/static/js/main.cc850429.chunk.js",
+    "main.js.map": "/stylindex-coding-test/static/js/main.cc850429.chunk.js.map",
     "runtime~main.js": "/stylindex-coding-test/static/js/runtime~main.29a13861.js",
     "runtime~main.js.map": "/stylindex-coding-test/static/js/runtime~main.29a13861.js.map",
     "static/js/2.e0954f8e.chunk.js": "/stylindex-coding-test/static/js/2.e0954f8e.chunk.js",
     "static/js/2.e0954f8e.chunk.js.map": "/stylindex-coding-test/static/js/2.e0954f8e.chunk.js.map",
     "index.html": "/stylindex-coding-test/index.html",
-    "precache-manifest.c4cf772c33e13a5c15d61d71df316a67.js": "/stylindex-coding-test/precache-manifest.c4cf772c33e13a5c15d61d71df316a67.js",
+    "precache-manifest.36b53b41898a4c3299a1f3fc2bac48ed.js": "/stylindex-coding-test/precache-manifest.36b53b41898a4c3299a1f3fc2bac48ed.js",
     "service-worker.js": "/stylindex-coding-test/service-worker.js"
   }
 }
